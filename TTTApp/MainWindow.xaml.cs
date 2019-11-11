@@ -3,6 +3,7 @@ using MahApps.Metro.Controls;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -57,7 +58,7 @@ namespace TTTApp
         /// <param name="e"></param>
         private void MenuItem_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("TTT_AxisForestry 0.1.0", "About");
+            MessageBox.Show($"TTT_AxisForestry {Assembly.GetExecutingAssembly().GetName().Version.ToString()}", "About");
         }
     }
 }
