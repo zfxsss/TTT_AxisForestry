@@ -1084,6 +1084,14 @@
             "PrerequisitesLocation" = "2:1"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.6.1"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.6.1 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.6.1"
+                    }
+                }
             }
         }
     }
@@ -3540,15 +3548,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:TTTAxisForestry"
-        "ProductCode" = "8:{26CEF9E4-C355-4795-B96F-6625EAF5C4EE}"
-        "PackageCode" = "8:{F0A1C230-DDA4-4801-9EA6-D1CDD899983A}"
+        "ProductCode" = "8:{5647947B-F35C-4615-8CFF-87803E2F91E8}"
+        "PackageCode" = "8:{37E9F374-9D4B-4F8E-8CEE-E5F20FE5C1EC}"
         "UpgradeCode" = "8:{F3071AC3-1548-4FDC-BB4C-61EC63914844}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:0.1.0"
+        "ProductVersion" = "8:0.2.0"
         "Manufacturer" = "8:AF"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
