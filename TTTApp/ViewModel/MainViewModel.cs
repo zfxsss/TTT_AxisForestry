@@ -72,7 +72,7 @@ namespace TTTApp.ViewModel
                     {
                         if (myTurn == false)
                         {
-                            controller = await dialogCoordinator.ShowProgressAsync(this,
+                            var controller = await dialogCoordinator.ShowProgressAsync(this,
                                 "Waiting for your opponent...",
                                 "",
                                 false,
@@ -129,7 +129,7 @@ namespace TTTApp.ViewModel
             StartListenerCmd = new RelayCommand(async () =>
             {
                 var cancellationTokenSrc = new CancellationTokenSource();
-
+                ProgressDialogController controller = null;
                 try
                 {
                     controller = await dialogCoordinator.ShowProgressAsync(this,
@@ -181,7 +181,7 @@ namespace TTTApp.ViewModel
                     await Application.Current.Dispatcher.InvokeAsync(async () =>
                     {
                         await Task.Delay(300);
-                        controller = await dialogCoordinator.ShowProgressAsync(this,
+                        var controller = await dialogCoordinator.ShowProgressAsync(this,
                             "Communication Established!",
                             "",
                             false,
@@ -345,11 +345,6 @@ namespace TTTApp.ViewModel
         /// 
         /// </summary>
         private IDialogCoordinator dialogCoordinator = DialogCoordinator.Instance;
-
-        /// <summary>
-        /// 
-        /// </summary>
-        private ProgressDialogController controller;
 
         /// <summary>
         /// 
