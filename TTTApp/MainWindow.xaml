@@ -1,0 +1,163 @@
+﻿<Controls:MetroWindow x:Class="TTTApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TTTApp"
+        xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
+        xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+        xmlns:Dialog="clr-namespace:MahApps.Metro.Controls.Dialogs;assembly=MahApps.Metro"
+        Dialog:DialogParticipation.Register="{Binding}"              
+        mc:Ignorable="d"
+        Closing="MetroWindow_Closing"              
+        Title="Tic Tac Toe" MinHeight="600" MinWidth="600" Height="600" Width="600">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="33"/>
+            <RowDefinition Height="100*"/>
+            <RowDefinition Height="25"/>
+        </Grid.RowDefinitions>
+
+        <Menu Grid.Row="0">
+            <MenuItem>
+                <MenuItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <iconPacks:PackIconMaterial Kind="Network" VerticalAlignment="Center" Foreground="Brown" Margin="0,0,5,0"/>
+                        <TextBlock>Network</TextBlock>
+                    </StackPanel>
+                </MenuItem.Header>
+                <MenuItem Command="{Binding StartListenerCmd}">
+                    <MenuItem.Header>
+                        <StackPanel Orientation="Horizontal">
+                            <iconPacks:PackIconMaterial Kind="ServerNetwork" VerticalAlignment="Center" Foreground="Brown" Margin="0,0,8,0"/>
+                            <TextBlock>Set Up Listener</TextBlock>
+                        </StackPanel>
+                    </MenuItem.Header>
+                </MenuItem>
+                <MenuItem Command="{Binding SearchListenerCmd}">
+                    <MenuItem.Header>
+                        <StackPanel Orientation="Horizontal">
+                            <iconPacks:PackIconMaterial Kind="SearchWeb" VerticalAlignment="Center" Foreground="Brown" Margin="0,0,8,0"/>
+                            <TextBlock>Search...</TextBlock>
+                        </StackPanel>
+                    </MenuItem.Header>
+                </MenuItem>
+                <Separator/>
+                <MenuItem Command="{Binding DisconnectCmd}">
+                    <MenuItem.Header>
+                        <StackPanel Orientation="Horizontal">
+                            <iconPacks:PackIconMaterial Kind="LanDisconnect" VerticalAlignment="Center" Foreground="Brown" Margin="0,0,8,0"/>
+                            <TextBlock>Disconnect</TextBlock>
+                        </StackPanel>
+                    </MenuItem.Header>
+                </MenuItem>
+            </MenuItem>
+            <MenuItem>
+                <MenuItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <iconPacks:PackIconMaterial Kind="Help" VerticalAlignment="Center" Foreground="Brown" Margin="0,0,5,0"/>
+                        <TextBlock>Help</TextBlock>
+                    </StackPanel>
+                </MenuItem.Header>
+                <MenuItem Click="MenuItem_Click">
+                    <MenuItem.Header>
+                        <StackPanel Orientation="Horizontal">
+                            <iconPacks:PackIconMaterial Kind="Information" VerticalAlignment="Center" Foreground="Brown" Margin="0,0,8,0"/>
+                            <TextBlock>About</TextBlock>
+                        </StackPanel>
+                    </MenuItem.Header>
+                </MenuItem>
+            </MenuItem>
+        </Menu>
+
+        <Grid Grid.Row="1" IsEnabled="{Binding GameBoardEnabled}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="33*"/>
+                <ColumnDefinition Width="33*"/>
+                <ColumnDefinition Width="33*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="33*"/>
+                <RowDefinition Height="33*"/>
+                <RowDefinition Height="33*"/>
+            </Grid.RowDefinitions>
+            <Button Grid.Column="0"
+                    Grid.Row="0"
+                    Command="{Binding ButtonCmd }"
+                    CommandParameter="0"
+                    >
+                <TextBlock Text="{Binding Button0Symbol}" FontSize="100"/>
+            </Button>
+            <Button Grid.Column="1"
+                    Grid.Row="0"
+                    Command="{Binding ButtonCmd }"
+                    CommandParameter="1"
+                    >
+                <TextBlock Text="{Binding Button1Symbol}" FontSize="100"/>
+            </Button>
+            <Button Grid.Column="2"
+                    Grid.Row="0"
+                    Command="{Binding ButtonCmd }"
+                    CommandParameter="2"
+                    >
+                <TextBlock Text="{Binding Button2Symbol}" FontSize="100"/>
+            </Button>
+            <Button Grid.Column="0"
+                    Grid.Row="1"
+                     Command="{Binding ButtonCmd }"
+                    CommandParameter="3"
+                    >
+                <TextBlock Text="{Binding Button3Symbol}" FontSize="100"/>
+            </Button>
+            <Button Grid.Column="1"
+                    Grid.Row="1"
+                    Command="{Binding ButtonCmd }"
+                    CommandParameter="4"
+                    >
+                <TextBlock Text="{Binding Button4Symbol}" FontSize="100"/>
+            </Button>
+            <Button Grid.Column="2"
+                    Grid.Row="1"
+                    Command="{Binding ButtonCmd }"
+                    CommandParameter="5"
+                    >
+                <TextBlock Text="{Binding Button5Symbol}" FontSize="100"/>
+            </Button>
+            <Button Grid.Column="0"
+                    Grid.Row="2"
+                    Command="{Binding ButtonCmd }"
+                    CommandParameter="6"
+                    >
+                <TextBlock Text="{Binding Button6Symbol}" FontSize="100"/>
+            </Button>
+            <Button Grid.Column="1"
+                    Grid.Row="2"
+                    Command="{Binding ButtonCmd }"
+                    CommandParameter="7"
+                    >
+                <TextBlock Text="{Binding Button7Symbol}" FontSize="100"/>
+            </Button>
+            <Button Grid.Column="2"
+                    Grid.Row="2"
+                    Command="{Binding ButtonCmd }"
+                    CommandParameter="8"
+                    >
+                <TextBlock Text="{Binding Button8Symbol}" FontSize="100"/>
+            </Button>
+        </Grid>
+        <StatusBar Grid.Row="2">
+            <StatusBar.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="50*"></ColumnDefinition>
+                            <ColumnDefinition Width="50*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                    </Grid>
+                </ItemsPanelTemplate>
+            </StatusBar.ItemsPanel>
+            <StatusBarItem HorizontalContentAlignment="Left" Grid.Column="0" VerticalAlignment="Center" Content="You Are O" Margin="5,0,0,0"/>
+            <StatusBarItem HorizontalContentAlignment="Right" Grid.Column="1" VerticalAlignment="Center" Content="{Binding Prompt}" Margin="0,0,5,0"/>
+        </StatusBar>
+    </Grid>
+</Controls:MetroWindow>
