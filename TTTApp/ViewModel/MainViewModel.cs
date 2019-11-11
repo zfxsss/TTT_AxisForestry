@@ -178,13 +178,17 @@ namespace TTTApp.ViewModel
                 {
                     comm.TcpReceivingTask.Start();
 
-                    controller = await dialogCoordinator.ShowProgressAsync(this,
-                        "Communication Established!",
-                        "",
-                        false,
-                        new MetroDialogSettings { ColorScheme = MetroDialogColorScheme.Accented });
-                    controller.SetIndeterminate();
-                    await Task.Delay(1500).ContinueWith(async (t) => { await controller.CloseAsync(); });
+                    await Application.Current.Dispatcher.InvokeAsync(async () =>
+                    {
+                        await Task.Delay(300);
+                        controller = await dialogCoordinator.ShowProgressAsync(this,
+                            "Communication Established!",
+                            "",
+                            false,
+                            new MetroDialogSettings { ColorScheme = MetroDialogColorScheme.Accented });
+                        controller.SetIndeterminate();
+                        await Task.Delay(1500).ContinueWith(async (t) => { await controller.CloseAsync(); });
+                    });
 
                     await Reset();
 
