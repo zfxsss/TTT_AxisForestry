@@ -146,6 +146,11 @@ namespace TTTApp.ViewModel
                     };
 
                     await comm.StartServer(cancellationTokenSrc.Token);
+
+                    //await Task.Run(async () =>
+                    //{
+                    //    await comm.StartServer(cancellationTokenSrc.Token);
+                    //});
                 }
                 catch
                 {
