@@ -28,7 +28,7 @@ namespace TTTCommunication
         /// <summary>
         /// 
         /// </summary>
-        public UdpClient BroadcastReceiver { get; private set; }
+        public UdpClient BroadcastSender { get; private set; }
 
         /// <summary>
         /// 
@@ -77,7 +77,7 @@ namespace TTTCommunication
             {
                 var commEndPoint = new IPEndPoint(IPAddress.Any, 10080);
                 Listener = new TcpListener(commEndPoint);
-                BroadcastReceiver = new UdpClient();
+                BroadcastSender = new UdpClient();
 
                 Listener.Start();
 
@@ -90,25 +90,25 @@ namespace TTTCommunication
                     }
                     finally
                     {
-                        BroadcastReceiver.Close();
+                        listenerReturn = true;
                     }
                 });
 
                 var taskBroadcast = Task.Run(async () =>
                 {
-                    try
+                    while (true)
                     {
-                        while (true)
+                        if (listenerReturn) break;
+
+                        try
                         {
-                            if (listenerReturn) break;
-
                             var remoteEndPoint = new IPEndPoint(IPAddress.Broadcast, 10080);
-                            BroadcastReceiver.Send(new byte[] { 0xcc, 0xdd }, 2, remoteEndPoint);
-
-                            await Task.Delay(2000);
+                            BroadcastSender.Send(new byte[] { 0xcc, 0xdd }, 2, remoteEndPoint);
                         }
+                        catch { }
+
+                        await Task.Delay(2000);
                     }
-                    catch { }
                 });
 
                 var cancellationCheck = Task.Run(async () =>
@@ -138,14 +138,13 @@ namespace TTTCommunication
                 await taskAccept;
             }
             catch
-            {
-                listenerReturn = true;
+            {             
                 throw;
             }
             finally
             {
                 Listener.Stop();
-                BroadcastReceiver.Close();
+                BroadcastSender.Close();
 
                 if ((!accepted) && (CommClient != null))
                 {
