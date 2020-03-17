@@ -30,15 +30,13 @@ namespace TTTApp.ViewModel
             {
                 if (comm.CommClient == null)
                 {
+                    if (apiWaiting)
+                        return;
+
+                    apiWaiting = true;
+
                     try
                     {
-                        if (apiWaiting)
-                        {
-                            return;
-                        }
-
-                        apiWaiting = true;
-
                         var numInt = int.Parse(num);
                         if (btnStatus[numInt] != null) return;
 
@@ -147,10 +145,13 @@ namespace TTTApp.ViewModel
 
                     await comm.StartServer(cancellationTokenSrc.Token);
 
+                    #region
                     //await Task.Run(async () =>
                     //{
                     //    await comm.StartServer(cancellationTokenSrc.Token);
                     //});
+                    #endregion
+
                 }
                 catch
                 {
@@ -789,10 +790,10 @@ namespace TTTApp.ViewModel
             {
                 if (!meFirst)
                 {
+                    apiWaiting = true;
+
                     try
                     {
-                        apiWaiting = true;
-
                         await APICall();
                     }
                     catch (Exception ex)

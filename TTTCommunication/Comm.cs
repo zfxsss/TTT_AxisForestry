@@ -138,7 +138,7 @@ namespace TTTCommunication
                 await taskAccept;
             }
             catch
-            {             
+            {
                 throw;
             }
             finally
@@ -167,9 +167,7 @@ namespace TTTCommunication
         public void SendPosition(byte position)
         {
             if (CommClient != null)
-            {
                 CommClient.Client.Send(new byte[] { 0x01, position, 0x00, 0x00 });
-            }
         }
 
         /// <summary>
@@ -181,9 +179,7 @@ namespace TTTCommunication
         public void SendGameInformation(byte wins, byte losses, byte ties)
         {
             if (CommClient != null)
-            {
                 CommClient.Client.Send(new byte[] { 0x02, wins, losses, ties });
-            }
         }
 
         /// <summary>
@@ -196,9 +192,7 @@ namespace TTTCommunication
         public void SendOtherMessage(byte byte1, byte byte2, byte byte3, byte byte4)
         {
             if (CommClient != null)
-            {
                 CommClient.Client.Send(new byte[] { byte1, byte2, byte3, byte4 });
-            }
         }
 
         /// <summary>
@@ -263,7 +257,7 @@ namespace TTTCommunication
             }
             finally
             {
-                if (client != null) client.Close();
+                client?.Close();
             }
         }
 
@@ -304,10 +298,7 @@ namespace TTTCommunication
         /// </summary>
         public void CloseClient()
         {
-            if (CommClient != null)
-            {
-                CommClient.Close();
-            }
+            CommClient?.Close();
         }
 
         /// <summary>
